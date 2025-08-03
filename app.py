@@ -208,5 +208,9 @@ if st.button("Generate Prediction and Recommendation", type="primary"):
         - **Average Humidity:** {avg_humidity:.2f} %
         - **Average Rainfall:** {avg_rainfall:.2f} mm/day
         """)
+
+        model = joblib.load("rf_crop_model.pkl")
+        print(type(model))
+
     else:
         st.warning("Cannot provide crop recommendation because the weather forecast failed.")
