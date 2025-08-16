@@ -92,9 +92,9 @@ targets = ['Tavg', 'RH_avg', 'RR']
 st.header("👨‍🌾 Enter Your Land Information")
 col1, col2 = st.columns(2)
 with col1:
-    n = st.number_input("Nitrogen Content (N)", min_value=0, value=0)
-    p = st.number_input("Phosphorus Content (P)", min_value=0, value=0)
-    k = st.number_input("Potassium Content (K)", min_value=0, value=0)
+    n = st.number_input("Nitrogen (N) [mg/kg]", min_value=0, value=0)
+    p = st.number_input("Phosphorus (P) [mg/kg]", min_value=0, value=0)
+    k = st.number_input("Potassium (K) [mg/kg]", min_value=0, value=0)
 with col2:
     # ph = st.number_input("Soil pH Level", min_value=0.0, max_value=14.0, value=0.0, format="%.1f")
     ph_input = st.text_input("Soil pH Level", "0.0")
