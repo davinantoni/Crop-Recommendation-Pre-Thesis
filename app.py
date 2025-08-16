@@ -96,7 +96,13 @@ with col1:
     p = st.number_input("Phosphorus Content (P)", min_value=0, value=0)
     k = st.number_input("Potassium Content (K)", min_value=0, value=0)
 with col2:
-    ph = st.number_input("Soil pH Level", min_value=0.0, max_value=14.0, value=0.0, format="%.1f")
+    # ph = st.number_input("Soil pH Level", min_value=0.0, max_value=14.0, value=0.0, format="%.1f")
+    ph_input = st.text_input("Soil pH Level", "0.0")
+    try:
+        ph = float(ph_input.replace(",", "."))  # convert ke float untuk ML
+    except ValueError:
+        st.error("Masukkan angka desimal valid (contoh: 6.5)")
+        st.stop()
     provinsi_list = get_available_provinces(MODEL_FOLDER)
     if not provinsi_list:
         st.error(f"No models found in the '{MODEL_FOLDER}' folder. The application cannot continue.")
@@ -138,7 +144,7 @@ if st.button("Generate Prediction and Recommendation", type="primary"):
         st.error(f"Weather model for province '{provinsi}' not found in the '{MODEL_FOLDER}' folder.")
         st.stop()
         
-    st.caption(f"Using model: `{os.path.basename(model_path)}`")
+    # st.caption(f"Using model: `{os.path.basename(model_path)}`")
     model = load_weather_model(model_path)
 
     # --- 3. Prepare initial input for the LSTM ---
